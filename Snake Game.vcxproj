@@ -146,6 +146,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Source Files\Headers\GameLogic.hpp" />
+    <ClInclude Include="Source Files\Headers\Application.hpp" />
+    <ClInclude Include="Source Files\Headers\IGameView.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source Files\Source\Application.cpp" />
+    <ClCompile Include="Source Files\Source\GameLogic.cpp" />
+    <ClCompile Include="Source Files\Source\IGameView.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".gitattributes" />
+    <None Include=".gitignore" />
+    <None Include="Snake Game.VC.db" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
