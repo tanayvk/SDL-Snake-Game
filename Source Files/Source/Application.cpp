@@ -1,6 +1,6 @@
 #include <iostream>
 #include "..\Headers\Application.hpp"
-
+#include <SDL.h>
 
 
 bool Application::Init()
@@ -15,7 +15,6 @@ void Application::HandleEvents()
 
 void Application::Update(int deltaTime)
 {
-	std::cout << deltaTime << std::endl;
 }
 
 Application::Application()

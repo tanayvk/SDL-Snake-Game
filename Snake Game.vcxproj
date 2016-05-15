@@ -149,21 +149,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Source Files\Headers\Event.hpp" />
-    <ClInclude Include="Source Files\Headers\EventListener.hpp" />
-    <ClInclude Include="Source Files\Headers\GameLogic.hpp" />
     <ClInclude Include="Source Files\Headers\Application.hpp" />
-    <ClInclude Include="Source Files\Headers\IEventHandler.hpp" />
-    <ClInclude Include="Source Files\Headers\IGameView.hpp" />
     <ClInclude Include="Source Files\Headers\Timer.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source Files\Source\Application.cpp" />
-    <ClCompile Include="Source Files\Source\Event.cpp" />
-    <ClCompile Include="Source Files\Source\EventListener.cpp" />
-    <ClCompile Include="Source Files\Source\GameLogic.cpp" />
-    <ClCompile Include="Source Files\Source\IEventHandler.cpp" />
-    <ClCompile Include="Source Files\Source\IGameView.cpp" />
     <ClCompile Include="Source Files\Source\Main.cpp" />
     <ClCompile Include="Source Files\Source\Timer.cpp" />
   </ItemGroup>
