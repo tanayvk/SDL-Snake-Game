@@ -1,32 +1,37 @@
+#include <iostream>
 #include "../Headers/Application.hpp"
 #include "../Headers/Timer.hpp"
 
-////////////////////////////////////////////////
-//				 The Main Loop                //
-////////////////////////////////////////////////
+using namespace std;
+
+///////////////////////////////////////////////////
+//               The Main Function               //
+///////////////////////////////////////////////////
 
 int main(int argc, char* argv[])
 {
-
-	Application* app = new Application();
-
-	// Create the main timer
+	// The timer for calculating the delta time
 	Timer* mainTimer = new Timer();
-	// Start the main timer
 	mainTimer->Start();
-	
-	// Initialize the game
-	if (!app->Init())
-	{
-		// Error initializing
-		return 1;
-	}
 
+	// Initialize the application
+	Application* app = Application::get();
+	app->Init();
+
+	cout << "initialization took " << mainTimer->GetTime() << " milliseconds." << endl;
+	
+	// The game loop
 	while (app->IsRunning())
 	{
 		app->HandleEvents();
-		app->Update(mainTimer->Refresh());
+		app->Update(mainTimer->Refresh()); // pass the delta time to the update function
+		app->Render();
 	}
+
+	// Clean the game and quit
+	app->Clean();
 
 	return 0;
 }
+
+
