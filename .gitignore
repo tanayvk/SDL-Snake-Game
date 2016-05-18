@@ -166,8 +166,8 @@ csx/
 ecf/
 rcf/
 
-# Microsoft Azure ApplicationInsights config file
-ApplicationInsights.config
+# Microsoft Azure GameInsights config file
+GameInsights.config
 
 # Windows Store app package directory
 AppPackages/

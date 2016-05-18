@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../Headers/Application.hpp"
+#include "../Headers/Game.hpp"
 #include "../Headers/Timer.hpp"
 
 using namespace std;
@@ -14,22 +14,22 @@ int main(int argc, char* argv[])
 	Timer* mainTimer = new Timer();
 	mainTimer->Start();
 
-	// Initialize the application
-	Application* app = Application::get();
-	app->Init();
+	// Initialize the game
+	Game* game = new Game();
+	game->Init();
 
 	cout << "initialization took " << mainTimer->GetTime() << " milliseconds." << endl;
 	
 	// The game loop
-	while (app->IsRunning())
+	while (game->IsRunning())
 	{
-		app->HandleEvents();
-		app->Update(mainTimer->Refresh()); // pass the delta time to the update function
-		app->Render();
+		game->HandleEvents();
+		game->Update(mainTimer->Refresh()); // pass the delta time to the update function
+		game->Render();
 	}
 
 	// Clean the game and quit
-	app->Clean();
+	game->Clean();
 
 	return 0;
 }

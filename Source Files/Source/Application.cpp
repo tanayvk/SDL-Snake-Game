@@ -1,27 +1,15 @@
 #include "..\Headers\Application.hpp"
 
-bool Application::Init()
+// Singleton Implementation
+Application * Application::myInstance = NULL;
+Application * Application::Get()
 {
-	// The game isn't yet running
-	myRunning = false;
-
-	// Initialize SDL subsystems
-	if (!InitSDL())
-		// Error initializing SDL
-		return false;
-
-	// Initialize the game objects
-	if (!InitGameObjects())
-		// Error initializing game objects
-		return false;
-
-	// The game has been initialized and now running
-	myRunning = true;
-
-	return true;
+	if (myInstance == NULL)
+		myInstance = new Application();
+	return myInstance;
 }
 
-bool Application::InitSDL()
+bool Application::Init()
 {
 	// Initialize SDL
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
@@ -55,45 +43,17 @@ bool Application::InitSDL()
 	return true;
 }
 
-bool Application::InitGameObjects()
-{
-	// Create the screen map
-	myScreenPixelMap = new PixelMap(100, 100);
-	myScreenPixelMap->CellSetColor(32, 28, PixelMap::Blue);
-	return true;
-}
 
-void Application::HandleEvents()
+void Application::ClearRenderer()
 {
-	// The event to be handled
-	SDL_Event e;
-
-	// Loop through the event queue for handling all the queued events
-	while (SDL_PollEvent(&e))
-	{
-		if (e.type == SDL_QUIT)
-			// The user closed the window, quit
-			myRunning = false;
-	}
-}
-
-void Application::Update(int deltaTime)
-{
-	
-}
-
-void Application::Render()
-{
-	// Clear the screen with black color
-	SDL_SetRenderDrawColor(myRenderer, 0x00, 0x00, 0x00, 0xFF);
+	// Clear the main renderer
 	SDL_RenderClear(myRenderer);
-
-	// Render the map on the screen
-	myScreenPixelMap->Render();
 }
 
-void Application::Clean()
+void Application::PresentRenderer()
 {
+	// Present the main renderer to the screen
+	SDL_RenderPresent(myRenderer);
 }
 
 void Application::DrawRect(int x, int y, int width, int height)
@@ -102,6 +62,14 @@ void Application::DrawRect(int x, int y, int width, int height)
 	SDL_Rect rect = { x, y, width, height };
 	// Draw the rectangle using the main renderer
 	SDL_RenderDrawRect(myRenderer, &rect);
+}
+
+void Application::DrawFilledRect(int x, int y, int width, int height)
+{
+	// Set the properties of the rectangle
+	SDL_Rect rect = { x, y, width, height };
+	// Draw the rectangle using the main renderer
+	SDL_RenderFillRect(myRenderer, &rect);
 }
 
 bool Application::SetDrawColor(int color, int alpha)
@@ -114,9 +82,9 @@ bool Application::SetDrawColor(int color, int alpha)
 	}
 
 	// Calculate the individual colors
-	int r = color % (16 ^ 4);
-	int g = color % (16 ^ 2) - r;
-	int b = color - (r + g);
+	int r = (color >> 16) & 0xFF;
+	int g = (color >> 8) & 0xFF;
+	int b = (color >> 0) & 0xFF;
 
 	// Set the draw color
 	SDL_SetRenderDrawColor(myRenderer, r, g, b, alpha);
@@ -125,18 +93,5 @@ bool Application::SetDrawColor(int color, int alpha)
 }
 
 Application::Application()
-{
-}
-
-Application * Application::instance = NULL;
-Application * Application::get()
-{
-	if (instance == NULL)
-		instance = new Application();
-
-	return instance;
-}
-
-Application::~Application()
 {
 }
