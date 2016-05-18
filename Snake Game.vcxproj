@@ -151,7 +151,6 @@
   <ItemGroup>
     <ClInclude Include="Source Files\Headers\Application.hpp" />
     <ClInclude Include="Source Files\Headers\Food.hpp" />
-    <ClInclude Include="Source Files\Headers\Game.hpp" />
     <ClInclude Include="Source Files\Headers\PixelMap.hpp" />
     <ClInclude Include="Source Files\Headers\Snake.hpp" />
     <ClInclude Include="Source Files\Headers\Timer.hpp" />
@@ -159,7 +158,6 @@
   <ItemGroup>
     <ClCompile Include="Source Files\Source\Application.cpp" />
     <ClCompile Include="Source Files\Source\Food.cpp" />
-    <ClCompile Include="Source Files\Source\Game.cpp" />
     <ClCompile Include="Source Files\Source\Main.cpp" />
     <ClCompile Include="Source Files\Source\PixelMap.cpp" />
     <ClCompile Include="Source Files\Source\Snake.cpp" />

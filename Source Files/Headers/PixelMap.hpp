@@ -1,7 +1,6 @@
 #pragma once
 #include "Application.hpp"
 #include <vector>
-#include <iostream>
 
 using namespace std;
 
@@ -12,7 +11,7 @@ public:
 	enum Color
 	{
 		None,
-		Blue = 0x00bbbb
+		Blue = 0x2222dd
 	};
 	// Render the map
 	void Render();
