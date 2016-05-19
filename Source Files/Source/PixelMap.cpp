@@ -5,7 +5,7 @@
 void PixelMap::Render()
 {
 	// Get the application for rendering
-	Application * app = Application::get();
+	Application * app = Application::Get();
 
 	// Calculate the width and height of the each cell
 	int cellWidth = app->GetScreenWidth() / myWidth;
@@ -14,11 +14,17 @@ void PixelMap::Render()
 	// Render all the cell of the map with appropriate color
 	for (int i = 0; i < myHeight; i++)
 	{
-		for (int j = 0; i < myWidth; i++)
+		for (int j = 0; j < myWidth; j++)
 		{
+			// Retrieve the color of the cell
 			const Color color = myPixelMap[i][j];
-			app->SetDrawColor(color, 0xFF);
-			app->DrawRect(cellWidth * j, cellHeight * i, cellWidth, cellHeight);
+			// If the color of the cell is not black
+			if (color != NULL)
+			{
+				// Color the cell
+				app->SetDrawColor(color, 0xFF);
+				app->DrawFilledRect(cellWidth * j, cellHeight * i, cellWidth, cellHeight);
+			}
 		}
 	}
 }

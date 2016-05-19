@@ -2,27 +2,6 @@
 
 bool Application::Init()
 {
-	// The game isn't yet running
-	myRunning = false;
-
-	// Initialize SDL subsystems
-	if (!InitSDL())
-		// Error initializing SDL
-		return false;
-
-	// Initialize the game objects
-	if (!InitGameObjects())
-		// Error initializing game objects
-		return false;
-
-	// The game has been initialized and now running
-	myRunning = true;
-
-	return true;
-}
-
-bool Application::InitSDL()
-{
 	// Initialize SDL
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
@@ -55,40 +34,38 @@ bool Application::InitSDL()
 	return true;
 }
 
-bool Application::InitGameObjects()
+bool Application::ClearRenderer()
 {
-	// Create the screen map
-	myScreenPixelMap = new PixelMap(100, 100);
-	myScreenPixelMap->CellSetColor(32, 28, PixelMap::Blue);
-	return true;
-}
-
-void Application::HandleEvents()
-{
-	// The event to be handled
-	SDL_Event e;
-
-	// Loop through the event queue for handling all the queued events
-	while (SDL_PollEvent(&e))
+	// Does the renderer exist?
+	if (myRenderer == NULL)
 	{
-		if (e.type == SDL_QUIT)
-			// The user closed the window, quit
-			myRunning = false;
+		// No, report and quit
+		cout << "the renderer has not yet been created" << endl;
+		return false;
 	}
-}
 
-void Application::Update(int deltaTime)
-{
 	// Clear the main renderer
 	SDL_RenderClear(myRenderer);
 
-	// Render the map on the screen
-	myScreenPixelMap->Render();
+	return true;
 }
 
-void Application::Clean()
+bool Application::PresentRenderer()
 {
+	// Does the renderer exist?
+	if (myRenderer == NULL)
+	{
+		// No, report and quit
+		cout << "the renderer has not yet been created" << endl;
+		return false;
+	}
+
+	// Clear the main renderer
+	SDL_RenderPresent(myRenderer);
+
+	return true;
 }
+
 
 void Application::DrawRect(int x, int y, int width, int height)
 {
@@ -96,6 +73,15 @@ void Application::DrawRect(int x, int y, int width, int height)
 	SDL_Rect rect = { x, y, width, height };
 	// Draw the rectangle using the main renderer
 	SDL_RenderDrawRect(myRenderer, &rect);
+}
+
+void Application::DrawFilledRect(int x, int y, int width, int height)
+{
+	// Set the properties of the rectangle
+	SDL_Rect rect = { x, y, width, height };
+	// Draw the rectangle using the main renderer
+	SDL_RenderFillRect(myRenderer, &rect);
+
 }
 
 bool Application::SetDrawColor(int color, int alpha)
@@ -123,7 +109,7 @@ Application::Application()
 }
 
 Application * Application::instance = NULL;
-Application * Application::get()
+Application * Application::Get()
 {
 	if (instance == NULL)
 		instance = new Application();

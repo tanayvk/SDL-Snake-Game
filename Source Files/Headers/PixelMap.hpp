@@ -11,7 +11,7 @@ public:
 	enum Color
 	{
 		None,
-		Blue = 0x2222dd
+		Blue = 0x00bbbb
 	};
 	// Render the map
 	void Render();

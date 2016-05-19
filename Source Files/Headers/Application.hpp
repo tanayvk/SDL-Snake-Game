@@ -10,27 +10,20 @@ using namespace std;
 class Application
 {
 public:
-	// Initialize the game
+	// Initialize the application
 	bool Init();
-	// Initialize SDL
-	bool InitSDL();
-	// Initialize the game objects
-	bool InitGameObjects();
-	// Handle events
-	void HandleEvents();
-	// Update the game
-	void Update(int deltaTime);
-	// Render the screen
-	void Render();
-	// Clean the resources used by the application
-	void Clean();
-	// Is the game running?
-	bool IsRunning() { return myRunning; }
+
+	// Clear the renderer
+	bool ClearRenderer();
+	// Present the renderer
+	bool PresentRenderer();
+	// Set the color of the renderer
+	bool SetDrawColor(int color, int alpha);
 
 	// Draw a rectangle to the screen
 	void DrawRect(int x, int y, int width, int height);
-	// Set the color of the renderer
-	bool SetDrawColor(int color, int alpha);
+	// Draw a rectangle to the screen
+	void DrawFilledRect(int x, int y, int width, int height);
 
 	// Get the width of the screen
 	int GetScreenWidth() { return myScreenWidth; }
@@ -38,22 +31,19 @@ public:
 	int GetScreenHeight() { return myScreenHeight; }
 
 	// Return the singleton object
-	static Application* get();
+	static Application* Get();
 
 	~Application();
 private:
-	// Is the game running?
-	bool myRunning;
 	// The main window of the game
 	SDL_Window* myWindow;
 	// The renderer of the main window
 	SDL_Renderer* myRenderer;
-	// The map of the screen
-	PixelMap* myScreenPixelMap;
+
 	// The width of the window
-	const int myScreenWidth = 1280;
+	const int myScreenWidth = 800;
 	// The height of the window
-	const int myScreenHeight = 720;
+	const int myScreenHeight = 800;
 
 	// Private Constructor
 	Application();
