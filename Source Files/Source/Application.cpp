@@ -79,13 +79,7 @@ void Application::HandleEvents()
 
 void Application::Update(int deltaTime)
 {
-	
-}
-
-void Application::Render()
-{
-	// Clear the screen with black color
-	SetDrawColor(0, 0xFF);
+	// Clear the main renderer
 	SDL_RenderClear(myRenderer);
 
 	// Render the map on the screen
