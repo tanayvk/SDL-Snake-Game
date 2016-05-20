@@ -28,8 +28,13 @@ bool Game::Init()
 bool Game::InitGameObjects()
 {
 	// Create the screen map
-	myScreenPixelMap = new PixelMap(25, 25);
-	myScreenPixelMap->CellSetColor(10, 5, PixelMap::Blue);
+	myScreenPixelMap = new PixelMap(50, 50);
+
+	// Add some colors to the pixel map
+	myScreenPixelMap->AddColor("Blue", 0x00bbbb);
+	myScreenPixelMap->AddColor("Orange", 0xF7A00A);
+	myScreenPixelMap->AddColor("Green", 0x27C432);
+
 	return true;
 }
 
@@ -44,16 +49,12 @@ void Game::HandleEvents()
 		if (e.type == SDL_QUIT)
 			// The user closed the window, quit
 			myRunning = false;
-
-		if (e.type == SDL_MOUSEBUTTONDOWN)
-			// The user clicked on the screen
-
 	}
 }
 
 void Game::Update(int deltaTime)
 {
-	
+	cout << deltaTime << endl;
 }
 
 void Game::Render()

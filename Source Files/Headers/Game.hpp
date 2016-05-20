@@ -2,14 +2,14 @@
 #include <iostream>
 #include "Application.hpp"
 #include "PixelMap.hpp"
+#include <random>
+#include <cmath>
 
 class Game
 {
 public:
 	// Initialize the game
 	bool Init();
-	// Initialize SDL
-	bool InitSDL();
 	// Initialize the game objects
 	bool InitGameObjects();
 	// Handle events
@@ -26,6 +26,9 @@ public:
 	Game();
 	~Game();
 private:
+	// Alternate the specified map cell
+	bool ColorMapCell(int x, int y);
+
 	// Is the game running?
 	bool myRunning;
 	// The map of the screen

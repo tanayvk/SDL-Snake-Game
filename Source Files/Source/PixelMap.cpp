@@ -17,19 +17,19 @@ void PixelMap::Render()
 		for (int j = 0; j < myWidth; j++)
 		{
 			// Retrieve the color of the cell
-			const Color color = myPixelMap[i][j];
+			const string color = myPixelMap[i][j];
 			// If the color of the cell is not black
-			if (color != NULL)
+			if (color != "")
 			{
-				// Color the cell
-				app->SetDrawColor(color, 0xFF);
+				// Color the cell with appropriate color
+				app->SetDrawColor(*colorMap[color], 0xFF);
 				app->DrawFilledRect(cellWidth * j, cellHeight * i, cellWidth, cellHeight);
 			}
 		}
 	}
 }
 
-bool PixelMap::CellSetColor(int x, int y, Color color)
+bool PixelMap::CellSetColor(int x, int y, string color)
 {
 	// Is the cell out of range?
 	if (x >= myWidth || y >= myHeight)
@@ -45,6 +45,53 @@ bool PixelMap::CellSetColor(int x, int y, Color color)
 	return true;
 }
 
+string PixelMap::CellGetColor(int x, int y)
+{
+	// Is the cell out of range?
+	if (x >= myWidth || y >= myHeight)
+	{
+		// Yes, report and quit
+		cout << "the cell which you are trying to color does not exist" << endl;
+		return "None";
+	}
+
+	// Return the color of the cell
+	return myPixelMap[y][x];
+}
+
+bool PixelMap::AddColor(string colorName, int color)
+{
+	// Does a color with this name already exist?
+	if (colorMap[colorName] != NULL)
+	{
+		// Yes, report and quit
+		cout << "A color with the name " << colorName << " already exists." << endl;
+		return false;
+	}
+
+	// Add the color to the color map
+	int* storedColor = new int(color);
+	colorMap[colorName] = storedColor;
+
+	return true;
+}
+
+bool PixelMap::RemoveColor(string colorName)
+{
+	// Does a color with this name exist?
+	if (colorMap[colorName] == NULL)
+	{
+		// No, report and quit
+		cout << "The color with the name " << colorName << " doesn't exist." << endl;
+		return false;
+	}
+
+	// Remove the color from the color map
+	colorMap[colorName] = NULL;
+
+	return false;
+}
+
 PixelMap::PixelMap(const int width, const int height)
 {
 	// Initialize the size of the map
@@ -53,10 +100,10 @@ PixelMap::PixelMap(const int width, const int height)
 	// Initialize the vector holding the map
 	for (int i = 0; i < height; i++)
 	{
-		vector<Color> row;
+		vector<string> row;
 		for (int j = 0; j < width; j++)
 		{
-			row.push_back(None);
+			row.push_back("");
 		}
 		myPixelMap.push_back(row);
 	}
