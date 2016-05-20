@@ -4,12 +4,12 @@
 
 Position::Position()
 {
-	myX = 0;
-	myY = 0;
+	x = 0;
+	y = 0;
 }
 
-Position::Position(int x, int y)
+Position::Position(int argX, int argY)
 {
-	myX = x;
-	myY = y;
+	x = argX;
+	y = argY;
 }

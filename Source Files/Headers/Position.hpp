@@ -2,8 +2,8 @@
 class Position
 {
 public:
-	int myX;
-	int myY;
+	int x;
+	int y;
 
 	Position();
 	Position(int x, int y);
