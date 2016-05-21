@@ -34,6 +34,23 @@ bool Application::Init()
 	return true;
 }
 
+Application::Event Application::PollEvent()
+{
+	SDL_Event e;
+
+	if (SDL_PollEvent(&e) == NULL)
+		return None;
+
+	// Return only those events which are being checked
+	switch (e.type)
+	{
+	case SDL_QUIT: 
+		return Quit;
+	default:
+		return Unknown;
+	}
+}
+
 bool Application::ClearRenderer()
 {
 	// Does the renderer exist?

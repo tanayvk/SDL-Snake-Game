@@ -40,13 +40,13 @@ bool Game::InitGameObjects()
 
 void Game::HandleEvents()
 {
-	// The event to be handled
-	SDL_Event e;
+	// The event
+	Application::Event e;
 
-	// Loop through the event queue for handling all the queued events
-	while (SDL_PollEvent(&e))
+	// Loop through the event queue
+	while (e = app->PollEvent())
 	{
-		if (e.type == SDL_QUIT)
+		if (e == Application::Quit)
 			// The user closed the window, quit
 			myRunning = false;
 	}
@@ -72,14 +72,7 @@ void Game::Render()
 
 void Game::Clean()
 {
-}
-
-
-Game::Game()
-{
-}
-
-
-Game::~Game()
-{
+	// Delete the game objects
+	delete myScreenPixelMap;
+	delete app;
 }
