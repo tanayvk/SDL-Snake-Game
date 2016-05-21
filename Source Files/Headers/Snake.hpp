@@ -9,7 +9,7 @@ class Snake
 {
 public:
 	// The direction enum
-	enum Direction { Up = -2 , Left, Right, Down };
+	enum Direction { Up = -2, Left, Right = 1, Down };
 	
 	// Move ahead in the current direction
 	bool MoveAhead();

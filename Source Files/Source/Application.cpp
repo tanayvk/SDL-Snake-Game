@@ -46,6 +46,17 @@ Application::Event Application::PollEvent()
 	{
 	case SDL_QUIT: 
 		return Quit;
+	case SDL_KEYDOWN:
+		if (e.key.keysym.sym == SDLK_UP)
+			return UpArrow;
+		else if (e.key.keysym.sym == SDLK_DOWN)
+			return DownArrow;
+		else if (e.key.keysym.sym == SDLK_LEFT)
+			return LeftArrow;
+		else if (e.key.keysym.sym == SDLK_RIGHT)
+			return RightArrow;
+		else
+			return Unknown;
 	default:
 		return Unknown;
 	}

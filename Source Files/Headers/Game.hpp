@@ -2,6 +2,8 @@
 #include <iostream>
 #include "Application.hpp"
 #include "PixelMap.hpp"
+#include "Position.hpp"
+#include "Snake.hpp"
 #include <random>
 #include <cmath>
 
@@ -25,12 +27,24 @@ public:
 	
 	// Is the game running?
 	bool IsRunning() { return myRunning; }
+
+	Game();
 private:
+	// Update the pixel map
+	void UpdatePixelMap();
+
 	// The reference to the application
 	Application* app;
 	// The map of the screen
 	PixelMap* myScreenPixelMap;
+	// The snake object
+	Snake* mySnake;
 	
+	// The snake update timer
+	int snakeUpdateTimer;
+	// The time by the snake to go one pixel
+	int snakePixelTime = 250;
+	int counter = 0;
 	// Is the game running?
 	bool myRunning;
 };

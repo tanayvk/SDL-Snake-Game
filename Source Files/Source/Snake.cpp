@@ -8,14 +8,14 @@ bool Snake::MoveAhead()
 	// Swap all pieces to the front
 	for (int i = myBodyPosition.size(); i > 1; i--)
 	{
-		myBodyPosition[i] = myBodyPosition[i - 1];
+		myBodyPosition[i - 1] = myBodyPosition[i - 2];
 	}
 
 	// Get the value of the direction
 	int directionValue = (int)myDirection;
 
 	// The direction of the snake is vertical (divisible by 2)
-	Position snakeHeadPosition = myBodyPosition[1];
+	Position snakeHeadPosition = myBodyPosition[0];
 	
 	// Set the new position of the snake head
 	if (directionValue % 2 == 0)
