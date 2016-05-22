@@ -60,13 +60,13 @@ void Game::HandleEvents()
 		if (e == Application::Quit)
 			// The user closed the window, quit
 			myRunning = false;
-		else if (e == Application::UpArrow && (mySnake->GetDirection() != Snake::Down))
+		else if (e == Application::UpArrow)
 			mySnake->ChangeDirection(Snake::Up);
-		else if (e == Application::DownArrow && (mySnake->GetDirection() != Snake::Up))
+		else if (e == Application::DownArrow)
 			mySnake->ChangeDirection(Snake::Down);
-		else if (e == Application::LeftArrow && (mySnake->GetDirection() != Snake::Right))
+		else if (e == Application::LeftArrow)
 			mySnake->ChangeDirection(Snake::Left);
-		else if (e == Application::RightArrow && (mySnake->GetDirection() != Snake::Left))
+		else if (e == Application::RightArrow)
 			mySnake->ChangeDirection(Snake::Right);
 	}
 }

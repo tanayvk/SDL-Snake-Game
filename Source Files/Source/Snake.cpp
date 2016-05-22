@@ -2,6 +2,14 @@
 
 bool Snake::MoveAhead()
 {
+	// Does the snake need to change its direction?
+	
+	if ( (float)((int)myDirection / myDirectionToMove) * (float)((int)myDirection / myDirectionToMove) != 1)
+	{
+		// Yes, change the direction
+		myDirection = myDirectionToMove;
+	}
+
 	// Set the position of the last piece
 	lastPiece = myBodyPosition[myBodyPosition.size() - 1];
 
@@ -42,7 +50,7 @@ void Snake::IncreaseSize()
 
 void Snake::ChangeDirection(Direction direction)
 {
-	myDirection = direction;
+	myDirectionToMove = direction;
 }
 
 Snake::Snake(vector<Position> position, Direction direction)
@@ -54,6 +62,6 @@ Snake::Snake(vector<Position> position, Direction direction)
 	myBodyPosition = position;
 
 	// Set the direction of the snake
-	myDirection = direction;
+	myDirectionToMove = myDirection = direction;
 }
 

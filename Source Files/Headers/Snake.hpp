@@ -29,6 +29,8 @@ private:
 	int mySize;
 	// The direction at which the snake is facing
 	Direction myDirection;
+	// The direction to move next time if possible
+	Direction myDirectionToMove;
 
 	// The position of the last piece
 	Position lastPiece;
