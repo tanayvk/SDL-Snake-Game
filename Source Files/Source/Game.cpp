@@ -33,7 +33,7 @@ bool Game::InitGameObjects()
 	// Add some colors to the pixel map
 	myScreenPixelMap->AddColor("Snake", 0x00bbbb);
 	myScreenPixelMap->AddColor("Orange", 0xF7A00A);
-	myScreenPixelMap->AddColor("Green", 0x27C432);
+	myScreenPixelMap->AddColor("SnakeHead", 0x27C432);
 	
 	// The position of the snake object at start
 	vector<Position> snakePosition;
@@ -78,9 +78,6 @@ void Game::Update(int deltaTime)
 	int snakeUpdate = snakeUpdateTimer / snakePixelTime;
 	for (int i = 0; i < snakeUpdate; i++)
 	{
-		cout << ++counter << endl;
-		if (counter == 6)
-			cout << "yup" << endl;
 		mySnake->MoveAhead();
 		snakeUpdateTimer = 0;
 	}
@@ -124,8 +121,11 @@ void Game::UpdatePixelMap()
 	// Get the position of the snake
 	vector<Position> snakePosition = mySnake->GetPosition();
 
+	// Draw the snake head
+	myScreenPixelMap->CellSetColor(snakePosition[0].x, snakePosition[0].y, "SnakeHead");
+
 	// Draw each piece one by one
-	for (int i = 0; i < snakePosition.size(); i++)
+	for (int i = 1; i < snakePosition.size(); i++)
 	{
 		// Get the position of the current piece
 		Position position = snakePosition[i];
