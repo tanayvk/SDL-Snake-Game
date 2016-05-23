@@ -9,6 +9,8 @@ using namespace std;
 class PixelMap
 {
 public:
+	// Clean the map
+	void Clean();
 	// Render the map
 	void Render();
 

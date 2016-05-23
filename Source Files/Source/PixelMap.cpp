@@ -2,6 +2,18 @@
 
 
 
+void PixelMap::Clean()
+{
+	// Set the all the pixels to none
+	for (int i = 0; i < myWidth; i++)
+	{
+		for (int j = 0; j < myHeight; j++)
+		{
+			CellSetColor(i, j, "");
+		}
+	}
+}
+
 void PixelMap::Render()
 {
 	// Get the application for rendering
@@ -32,7 +44,7 @@ void PixelMap::Render()
 bool PixelMap::CellSetColor(int x, int y, string color)
 {
 	// Is the cell out of range?
-	if (x >= myWidth || y >= myHeight)
+	if (x >= myWidth || y >= myHeight || x < 0 || y < 0)
 	{
 		// Yes, report and quit
 		cout << "the cell which you are trying to color does not exist" << endl;

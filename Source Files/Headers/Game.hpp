@@ -1,7 +1,10 @@
 #pragma once
 #include <iostream>
+#include "Timer.hpp"
 #include "Application.hpp"
 #include "PixelMap.hpp"
+#include "Position.hpp"
+#include "Snake.hpp"
 #include <random>
 #include <cmath>
 
@@ -12,28 +15,38 @@ public:
 	bool Init();
 	// Initialize the game objects
 	bool InitGameObjects();
+
 	// Handle events
 	void HandleEvents();
 	// Update the game
 	void Update(int deltaTime);
 	// Render the screen
 	void Render();
+	
 	// Clean the resources used by the application
 	void Clean();
+	
 	// Is the game running?
 	bool IsRunning() { return myRunning; }
 
 	Game();
-	~Game();
 private:
-	// Alternate the specified map cell
-	bool ColorMapCell(int x, int y);
+	// Update the pixel map
+	bool UpdatePixelMap();
+
+	// The reference to the application
+	Application* app;
+	// The map of the screen
+	PixelMap* myScreenPixelMap;
+	// The snake object
+	Snake* mySnake;
+	
+	// The time taken by the snake to travel one pixel
+	int mySnakePixelTime = 500;
+	// The timer for controlling the snake movement
+	Timer* mySnakeMovementTimer;
 
 	// Is the game running?
 	bool myRunning;
-	// The map of the screen
-	PixelMap* myScreenPixelMap;
-	// The reference to the application
-	Application* app;
 };
 

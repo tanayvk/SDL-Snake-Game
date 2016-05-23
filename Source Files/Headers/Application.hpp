@@ -10,8 +10,22 @@ using namespace std;
 class Application
 {
 public:
+	// The event types
+	enum Event
+	{
+		None,
+		Quit,
+		UpArrow,
+		DownArrow,
+		LeftArrow,
+		RightArrow,
+		Unknown,
+	};
+	
 	// Initialize the application
 	bool Init();
+	// Poll the event queue
+	Event PollEvent();
 
 	// Clear the renderer
 	bool ClearRenderer();

@@ -34,6 +34,34 @@ bool Application::Init()
 	return true;
 }
 
+Application::Event Application::PollEvent()
+{
+	SDL_Event e;
+
+	if (SDL_PollEvent(&e) == NULL)
+		return None;
+
+	// Return only those events which are being checked
+	switch (e.type)
+	{
+	case SDL_QUIT: 
+		return Quit;
+	case SDL_KEYDOWN:
+		if (e.key.keysym.sym == SDLK_UP)
+			return UpArrow;
+		else if (e.key.keysym.sym == SDLK_DOWN)
+			return DownArrow;
+		else if (e.key.keysym.sym == SDLK_LEFT)
+			return LeftArrow;
+		else if (e.key.keysym.sym == SDLK_RIGHT)
+			return RightArrow;
+		else
+			return Unknown;
+	default:
+		return Unknown;
+	}
+}
+
 bool Application::ClearRenderer()
 {
 	// Does the renderer exist?

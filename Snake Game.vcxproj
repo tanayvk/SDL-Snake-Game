@@ -76,6 +76,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>E:\Users\Tanay\Projects\Game Development\SDL\Snake Game\Source Files\SDL\include;$(IncludePath)</IncludePath>
+    <LibraryPath>E:\Users\Tanay\Projects\Game Development\SDL\Snake Game\Source Files\SDL\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -110,6 +112,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -152,9 +155,13 @@
     <ClInclude Include="Source Files\Headers\Application.hpp" />
     <ClInclude Include="Source Files\Headers\Game.hpp" />
     <ClInclude Include="Source Files\Headers\PixelMap.hpp" />
+    <ClInclude Include="Source Files\Headers\Position.hpp" />
+    <ClInclude Include="Source Files\Headers\Snake.hpp" />
     <ClInclude Include="Source Files\Headers\Timer.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source Files\Source\Position.cpp" />
+    <ClCompile Include="Source Files\Source\Snake.cpp" />
     <ClCompile Include="Source Files\Source\Application.cpp" />
     <ClCompile Include="Source Files\Source\Game.cpp" />
     <ClCompile Include="Source Files\Source\Main.cpp" />

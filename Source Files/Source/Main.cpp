@@ -11,16 +11,14 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-	// The timer for calculating the delta time
-	Timer* mainTimer = new Timer();
-	mainTimer->Start();
-
 	// Initialize the game
 	Game* game = new Game();
 	game->Init();
 
-	cout << "initialization took " << mainTimer->GetTime() << " milliseconds." << endl;
-	
+	// The timer for calculating the delta time
+	Timer* mainTimer = new Timer();
+	mainTimer->Start();
+
 	// The game loop
 	while (game->IsRunning())
 	{
