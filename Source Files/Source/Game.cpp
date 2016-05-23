@@ -31,9 +31,9 @@ bool Game::InitGameObjects()
 	myScreenPixelMap = new PixelMap(50, 50);
 
 	// Add some colors to the pixel map
-	myScreenPixelMap->AddColor("Snake", 0x00bbbb);
-	myScreenPixelMap->AddColor("Orange", 0xF7A00A);
-	myScreenPixelMap->AddColor("SnakeHead", 0x27C432);
+	myScreenPixelMap->AddColor("Snake", 0x0085CC);
+	myScreenPixelMap->AddColor("SnakeHead", 0x00A7FF);
+	myScreenPixelMap->AddColor("Food", 0xF7A00A);
 	
 	// The position of the snake object at start
 	vector<Position> snakePosition;
