@@ -42,11 +42,6 @@ bool Game::InitGameObjects()
 	snakePosition.push_back(Position(10, 6));
 	snakePosition.push_back(Position(9, 6));
 	snakePosition.push_back(Position(8, 6));
-	snakePosition.push_back(Position(7, 6));
-	snakePosition.push_back(Position(6, 6));
-	snakePosition.push_back(Position(5, 6));
-	snakePosition.push_back(Position(4, 6));
-	snakePosition.push_back(Position(3, 6));
 
 	// Create the snake object
 	mySnake = new Snake(snakePosition, Snake::Right);
