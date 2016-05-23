@@ -7,5 +7,8 @@ public:
 
 	Position();
 	Position(int x, int y);
+
+	// Overloaded ==, Are the two positions same?
+	bool operator==(Position pos);
 };
 

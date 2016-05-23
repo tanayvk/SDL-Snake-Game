@@ -37,6 +37,11 @@ bool Game::InitGameObjects()
 	
 	// The position of the snake object at start
 	vector<Position> snakePosition;
+	snakePosition.push_back(Position(12, 6));
+	snakePosition.push_back(Position(11, 6));
+	snakePosition.push_back(Position(10, 6));
+	snakePosition.push_back(Position(9, 6));
+	snakePosition.push_back(Position(8, 6));
 	snakePosition.push_back(Position(7, 6));
 	snakePosition.push_back(Position(6, 6));
 	snakePosition.push_back(Position(5, 6));
@@ -45,6 +50,10 @@ bool Game::InitGameObjects()
 
 	// Create the snake object
 	mySnake = new Snake(snakePosition, Snake::Right);
+
+	// Start the snake timer
+	mySnakeMovementTimer = new Timer();
+	mySnakeMovementTimer->Start();
 
 	return true;
 }
@@ -73,16 +82,31 @@ void Game::HandleEvents()
 
 void Game::Update(int deltaTime)
 {
-	snakeUpdateTimer += deltaTime;
-	
-	int snakeUpdate = snakeUpdateTimer / snakePixelTime;
-	for (int i = 0; i < snakeUpdate; i++)
+	// Calculate the number of times the snake has to move
+	int snakeMoves = mySnakeMovementTimer->GetTime() / mySnakePixelTime;
+
+	// Should the snake move?
+	if (snakeMoves > 0)
 	{
-		mySnake->MoveAhead();
-		snakeUpdateTimer = 0;
+		// Refresh the timer	
+		mySnakeMovementTimer->Refresh();
+
+		// Move the snake ahead
+		for (int i = 0; i < snakeMoves; i++)
+		{
+			mySnake->MoveAhead();
+			
+			if (mySnake->IsOverlapping())
+			{
+				cout << "game over" << endl;
+			}
+		}
 	}
 
-	UpdatePixelMap();
+	if (!UpdatePixelMap())
+	{
+		cout << "game over" << endl;
+	}
 }
 
 void Game::Render()
@@ -107,11 +131,9 @@ void Game::Clean()
 
 Game::Game()
 {
-	// Initialize the snake update timer
-	snakeUpdateTimer = 0;
 }
 
-void Game::UpdatePixelMap()
+bool Game::UpdatePixelMap()
 {
 	/* Draw the snake object to the pixel map */
 
@@ -122,7 +144,8 @@ void Game::UpdatePixelMap()
 	vector<Position> snakePosition = mySnake->GetPosition();
 
 	// Draw the snake head
-	myScreenPixelMap->CellSetColor(snakePosition[0].x, snakePosition[0].y, "SnakeHead");
+	if (!(myScreenPixelMap->CellSetColor(snakePosition[0].x, snakePosition[0].y, "SnakeHead")))
+		return false;
 
 	// Draw each piece one by one
 	for (int i = 1; i < snakePosition.size(); i++)

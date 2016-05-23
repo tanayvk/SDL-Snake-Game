@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include "Timer.hpp"
 #include "Application.hpp"
 #include "PixelMap.hpp"
 #include "Position.hpp"
@@ -31,7 +32,7 @@ public:
 	Game();
 private:
 	// Update the pixel map
-	void UpdatePixelMap();
+	bool UpdatePixelMap();
 
 	// The reference to the application
 	Application* app;
@@ -40,11 +41,11 @@ private:
 	// The snake object
 	Snake* mySnake;
 	
-	// The snake update timer
-	int snakeUpdateTimer;
-	// The time by the snake to go one pixel
-	int snakePixelTime = 250;
-	int counter = 0;
+	// The time taken by the snake to travel one pixel
+	int mySnakePixelTime = 500;
+	// The timer for controlling the snake movement
+	Timer* mySnakeMovementTimer;
+
 	// Is the game running?
 	bool myRunning;
 };

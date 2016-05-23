@@ -22,6 +22,8 @@ public:
 	vector<Position> GetPosition() { return myBodyPosition; }
 	// Get the direction of the snake
 	Direction GetDirection() { return myDirection; }
+	// Is the body of the snake overlapping?
+	bool IsOverlapping();
 
 	Snake(vector<Position> position, Direction direction);
 private:
