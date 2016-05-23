@@ -50,6 +50,10 @@ bool Game::InitGameObjects()
 	mySnakeMovementTimer = new Timer();
 	mySnakeMovementTimer->Start();
 
+	// Create the food object
+	myFood = new Food();
+	SpawnFood();
+
 	return true;
 }
 
@@ -95,8 +99,18 @@ void Game::Update(int deltaTime)
 			{
 				cout << "game over" << endl;
 			}
+			// Did the snake eat food
+			if (mySnake->GetPosition()[0] == myFood->GetPosition())
+			{
+				// Increase the size of the snake
+				mySnake->IncreaseSize();
+				// Spawn food at a new location
+				SpawnFood();
+			}
+
 		}
 	}
+
 
 	if (!UpdatePixelMap())
 	{
@@ -135,6 +149,12 @@ bool Game::UpdatePixelMap()
 	// Clean the pixel map
 	myScreenPixelMap->Clean();
 
+	// Get the position of the food
+	Position foodPosition = myFood->GetPosition();
+
+	// Draw the food
+	myScreenPixelMap->CellSetColor(foodPosition.x, foodPosition.y, "Food");
+
 	// Get the position of the snake
 	vector<Position> snakePosition = mySnake->GetPosition();
 
@@ -149,4 +169,9 @@ bool Game::UpdatePixelMap()
 		Position position = snakePosition[i];
 		myScreenPixelMap->CellSetColor(position.x, position.y, "Snake");
 	}
+}
+
+void Game::SpawnFood()
+{
+	myFood->SetPosition(22, 8);
 }

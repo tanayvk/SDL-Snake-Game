@@ -33,6 +33,9 @@
     <ClInclude Include="Source Files\Headers\Position.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source Files\Headers\Food.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source Files\Source\Application.cpp">
@@ -54,6 +57,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source Files\Source\Position.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Files\Source\Food.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

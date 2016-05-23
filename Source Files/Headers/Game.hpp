@@ -5,6 +5,7 @@
 #include "PixelMap.hpp"
 #include "Position.hpp"
 #include "Snake.hpp"
+#include "Food.hpp"
 #include <random>
 #include <cmath>
 
@@ -33,6 +34,8 @@ public:
 private:
 	// Update the pixel map
 	bool UpdatePixelMap();
+	// Spawn new food
+	void SpawnFood();
 
 	// The reference to the application
 	Application* app;
@@ -40,6 +43,8 @@ private:
 	PixelMap* myScreenPixelMap;
 	// The snake object
 	Snake* mySnake;
+	// The food object
+	Food* myFood;
 	
 	// The time taken by the snake to travel one pixel
 	int mySnakePixelTime = 500;

@@ -39,9 +39,6 @@ void Snake::IncreaseSize()
 
 		// Add one more piece to the body
 		myBodyPosition.push_back(lastPiece);
-
-		// Delete the last piece
-		delete &lastPiece;
 	}
 }
 
